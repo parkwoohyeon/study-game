@@ -45,3 +45,23 @@ void Player::Render()
     std::cout << "직업 이름 : " << name << '\n';
     std::cout << "체력 : " << HP << "\t공격력 : " << Attack << '\n';
 }
+
+int Player::GetAttack()
+{
+    return Attack;
+}
+
+int Player::GetHP()
+{
+    return HP;
+}
+
+void Player::TakeDamage(int damage)
+{
+    HP -= damage;
+}
+
+bool Player::IsDead()
+{
+    return HP <= 0;
+}

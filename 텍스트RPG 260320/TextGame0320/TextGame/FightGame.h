@@ -1,4 +1,7 @@
 #pragma once
+#include "Player.h"
+#include "Monster.h"
+
 class FightGame
 {
 
@@ -8,6 +11,6 @@ class FightGame
 
 public:
 	void Start();
-	void Battle();
+	void Battle(Player& player, Monster& monster);
 };
 

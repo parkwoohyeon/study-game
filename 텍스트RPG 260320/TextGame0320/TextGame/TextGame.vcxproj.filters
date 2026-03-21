@@ -19,14 +19,14 @@
     <Filter Include="Player">
       <UniqueIdentifier>{2adff480-dc92-457a-9b62-d546e1b2a8dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="hunting ground">
-      <UniqueIdentifier>{bd9c3821-b766-437b-88eb-092affcc89ac}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Monster">
       <UniqueIdentifier>{f47b8951-6474-4094-9a27-8fe432e9dfed}</UniqueIdentifier>
     </Filter>
     <Filter Include="FightGame">
       <UniqueIdentifier>{30ebc519-12a8-4fef-9a2c-5d34a170e812}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FightGame\hunting ground">
+      <UniqueIdentifier>{bd9c3821-b766-437b-88eb-092affcc89ac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -37,7 +37,7 @@
       <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="hunting_ground.cpp">
-      <Filter>hunting ground</Filter>
+      <Filter>FightGame\hunting ground</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>Monster</Filter>

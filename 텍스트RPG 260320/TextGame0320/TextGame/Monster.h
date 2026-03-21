@@ -14,6 +14,9 @@ public:
 
 	void CreateMonster(int type);
 	void Render();
-
+	int GetAttack();
+	int GetHP();
+	void TakeDamage(int damage);
+	bool IsDead();
 };
 

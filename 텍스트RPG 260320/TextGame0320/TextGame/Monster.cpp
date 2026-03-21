@@ -26,11 +26,35 @@ void Monster::CreateMonster(int type)
         HP = 40;
         Attack = 5;
         break;
+
     }
 }
 
 
-void Render() 
+void Monster::Render()
 {
+    std::cout << "================ 몬스터 =================\n";
+    std::cout << "이름 : " << name << '\n';
+    std::cout << "HP : " << HP << '\n';
+    std::cout << "공격력 : " << Attack << '\n';
+}
 
+int Monster::GetAttack()
+{
+    return Attack;
+}
+
+int Monster::GetHP()
+{
+    return HP;
+}
+
+void Monster::TakeDamage(int damage)
+{
+    HP -= damage;
+}
+
+bool Monster::IsDead()
+{
+    return HP <= 0;
 }

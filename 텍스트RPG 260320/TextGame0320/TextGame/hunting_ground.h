@@ -9,11 +9,11 @@ private:
 	std::string place;
 	int placeLevel;
 	std::string monster;
-	FightGame fight;
+	int monsterType;
 
 public:
 	void SelectGround();
 	void Render();
-
+	int GetMonsterType();
 
 };

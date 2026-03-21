@@ -5,3 +5,6 @@ Release/
 *.exe
 *.obj
 *.user
+*.zip
+*.rar
+*.7z

@@ -9,8 +9,8 @@ class MainGame
 private :
 	Player player;
 	hunting_ground hunting;
-	
-	
+	Monster monster;
+	FightGame fight;
 
 public:
 
