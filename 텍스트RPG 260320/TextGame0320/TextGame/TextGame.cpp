@@ -2,6 +2,10 @@
 #include "MainGame.h"
 #include "Player.h"
 #include <Windows.h>
+#include "FightGame.h"
+#include "hunting_ground.h"
+#include "Monster.h"
+
 //main함수
 int main()
 {

@@ -1,4 +1,4 @@
-#include "FightGame.h"
+﻿#include "FightGame.h"
 #include <iostream>
 #include "Player.h"
 #include "Monster.h"
@@ -27,6 +27,7 @@ void FightGame::Battle(Player& player, Monster& monster)
         if (monster.IsDead())
         {
             std::cout << "몬스터 처치!\n";
+            player.GainExp(monster.GetExpReward());
             break;
         }
 

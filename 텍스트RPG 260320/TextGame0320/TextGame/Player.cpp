@@ -36,14 +36,41 @@ void Player::SelectJob()
         std::cout << "잘못된 입력입니다.\n";
         break;
     }
+
+    Level = 1;
+    Exp = 0;
+    MaxExp = 100;
 }
 
-//직업의 정보를 알려주는 함수
+void Player::GainExp(int exp) {
+    Exp += exp;
+    std::cout << exp << "의 경험치를 휙득했습니다!\n";
+
+    if (Exp >= MaxExp) {
+        Levelup();
+    }
+}
+
+void Player::Levelup() {
+    Level++;
+    Exp -= MaxExp;
+    MaxExp += 50;
+
+    HP += 20;
+    Attack += 5;
+
+    std::cout << "레벨업! 현재 레벨 : " << Level << '\n';
+    std::cout << "체력과 공격력이 상승했습니다!\n";
+}
+
+//플레이어의 정보를 알려주는 함수
 void Player::Render()
 {
     std::cout << "================================================\n";
     std::cout << "직업 이름 : " << name << '\n';
     std::cout << "체력 : " << HP << "\t공격력 : " << Attack << '\n';
+    std::cout << "경험치 : " << Exp << " / " << MaxExp << '\n';
+
 }
 
 int Player::GetAttack()
@@ -64,4 +91,19 @@ void Player::TakeDamage(int damage)
 bool Player::IsDead()
 {
     return HP <= 0;
+}
+
+int Player::GetLevel()
+{
+    return Level;
+}
+
+int Player::GetExp()
+{
+    return Exp;
+}
+
+int Player::GetMaxExp()
+{
+    return MaxExp;
 }
