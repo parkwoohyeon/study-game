@@ -1,46 +1,107 @@
 ﻿#include "FightGame.h"
 #include <iostream>
-#include "Player.h"
-#include "Monster.h"
+#include <cstdlib>
+#include <ctime>
 
-// 게임 입장을 했을 때 함수
-void FightGame::Start() {
-
-	std::cout << "================================================\n";
-	std::cout << "전투에 입장하셨습니다\n";
-	
-
+void FightGame::Start()
+{
+    std::cout << "================================================\n";
+    std::cout << "전투에 입장하셨습니다.\n";
 }
 
-//전투 구현 함수
+bool FightGame::CheckHit(int attackerLevel, int defenderLevel)
+{
+    int hitChance = 85 + (attackerLevel - defenderLevel) * 5;
+
+    if (hitChance < 30)
+    {
+        hitChance = 30;
+    }
+
+    if (hitChance > 95)
+    {
+        hitChance = 95;
+    }
+
+    int roll = rand() % 100 + 1;
+    return roll <= hitChance;
+}
+
 void FightGame::Battle(Player& player, Monster& monster)
 {
     while (true)
     {
-        std::cout << "\n===== 전투 시작 =====\n";
+        int input = 0;
 
-        system("pause");
+        std::cout << "\n================ 전투 =================\n";
+        std::cout << "플레이어 HP : " << player.GetHP() << '\n';
+        std::cout << "몬스터 HP : " << monster.GetHP() << '\n';
+        std::cout << "1. 공격 2. 도망 3. 인벤토리\n -> ";
+        std::cin >> input;
 
-        std::cout << "플레이어 공격!\n";
-        monster.TakeDamage(player.GetAttack());
-
-        if (monster.IsDead())
+        if (input == 1)
         {
-            std::cout << "몬스터 처치!\n";
-            player.GainExp(monster.GetExpReward());
+            std::cout << "\n플레이어 공격!\n";
+
+            if (CheckHit(player.GetLevel(), monster.GetLevel()))
+            {
+                int damage = player.GetAttack() - monster.GetDefense();
+                if (damage < 1)
+                {
+                    damage = 1;
+                }
+
+                monster.TakeDamage(damage);
+                std::cout << monster.GetName() << "에게 " << damage << "의 피해를 주었습니다.\n";
+            }
+            else
+            {
+                std::cout << "플레이어 공격이 빗나갔습니다!\n";
+            }
+
+            if (monster.IsDead())
+            {
+                std::cout << "몬스터 처치!\n";
+                player.GainExp(monster.GetExpReward());
+                break;
+            }
+
+            std::cout << "\n몬스터 공격!\n";
+
+            if (CheckHit(monster.GetLevel(), player.GetLevel()))
+            {
+                int damage = monster.GetAttack() - player.GetDefense();
+                if (damage < 1)
+                {
+                    damage = 1;
+                }
+
+                player.TakeDamage(damage);
+                std::cout << "플레이어가 " << damage << "의 피해를 입었습니다.\n";
+            }
+            else
+            {
+                std::cout << "몬스터 공격이 빗나갔습니다!\n";
+            }
+
+            if (player.IsDead())
+            {
+                std::cout << "플레이어 사망...\n";
+                break;
+            }
+        }
+        else if (input == 2)
+        {
+            std::cout << "전투에서 도망쳤습니다.\n";
             break;
         }
-
-        std::cout << "몬스터 공격!\n";
-        player.TakeDamage(monster.GetAttack());
-
-        if (player.IsDead())
+        else if (input == 3)
         {
-            std::cout << "플레이어 사망...\n";
-            break;
+            player.ShowInventory();
         }
-
-        std::cout << "\n[플레이어 HP] : " << player.GetHP() << '\n';
-        std::cout << "[몬스터 HP] : " << monster.GetHP() << '\n';
+        else
+        {
+            std::cout << "잘못된 입력입니다.\n";
+        }
     }
 }

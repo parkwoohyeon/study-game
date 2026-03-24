@@ -1,25 +1,28 @@
 #pragma once
-#include <string>
 #include <iostream>
+#include <string>
+
 class Monster
 {
-
 private:
-
-	std::string name;
-	int HP;
-	int Attack;
-	int ExpReward;
-
+    std::string name;
+    int HP;
+    int Attack;
+    int Defense;
+    int Level;
+    int ExpReward;
 
 public:
+    void CreateMonster(int type);
+    void Render();
 
-	void CreateMonster(int type);
-	void Render();
-	int GetAttack();
-	int GetHP();
-	void TakeDamage(int damage);
-	bool IsDead();
-	int GetExpReward();// 몬스터를 잡았을 때 주는 경험치 반환을 하는 함수
+    std::string GetName();
+    int GetAttack();
+    int GetDefense();
+    int GetHP();
+    int GetLevel();
+    int GetExpReward();
+
+    void TakeDamage(int damage);
+    bool IsDead();
 };
-
