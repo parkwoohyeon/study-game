@@ -63,6 +63,7 @@ void FightGame::Battle(Player& player, Monster& monster)
             {
                 std::cout << "몬스터 처치!\n";
                 player.GainExp(monster.GetExpReward());
+                player.AddMoney(monster.GetMoney());
                 break;
             }
 
@@ -87,6 +88,7 @@ void FightGame::Battle(Player& player, Monster& monster)
             if (player.IsDead())
             {
                 std::cout << "플레이어 사망...\n";
+
                 break;
             }
         }
@@ -97,7 +99,7 @@ void FightGame::Battle(Player& player, Monster& monster)
         }
         else if (input == 3)
         {
-            player.ShowInventory();
+            player.GetInventory().ShowItems();
         }
         else
         {

@@ -15,7 +15,7 @@ void MainGame::Update()
         system("cls");
         player.Render();
 
-        std::cout << "\n1. 사냥터 2. 인벤토리 3. 종료\n -> ";
+        std::cout << "\n1. 사냥터 2. 인벤토리 3. 상점 4. 종료\n -> ";
         std::cin >> input;
 
         if (input == 1)
@@ -38,11 +38,41 @@ void MainGame::Update()
         }
         else if (input == 2)
         {
-            player.ShowInventory();
-            system("pause");
+            int invenInput = 0;
+
+            while (true)
+            {
+                system("cls");
+                player.Render();
+                player.GetInventory().ShowItems();
+
+                std::cout << "\n0. 뒤로 가기\n";
+                std::cout << "아이템 선택 : ";
+                std::cin >> invenInput;
+
+                if (invenInput == 0)
+                {
+                    break;
+                }
+
+                if (invenInput < 1 || invenInput > player.GetInventory().GetItemCount())
+                {
+                    std::cout << "잘못된 입력입니다.\n";
+                    system("pause");
+                    continue;
+                }
+
+                std::string item = player.GetInventory().GetItem(invenInput - 1);
+                player.UseItem(item);
+                system("pause");
+            }
         }
         else if (input == 3)
         {
+            store.EnterShop(player);
+            system("pause");
+        }
+        else if (input == 4) {
             std::cout << "게임을 종료합니다.\n";
             break;
         }

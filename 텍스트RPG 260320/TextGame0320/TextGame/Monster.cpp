@@ -11,6 +11,7 @@ void Monster::CreateMonster(int type)
         Attack = 18;
         Defense = 7;
         ExpReward = 55;
+        gold = 25;
         break;
 
     case 2:
@@ -20,6 +21,7 @@ void Monster::CreateMonster(int type)
         Attack = 28;
         Defense = 12;
         ExpReward = 120;
+        gold = 100;
         break;
 
     case 3:
@@ -29,6 +31,7 @@ void Monster::CreateMonster(int type)
         Attack = 13;
         Defense = 4;
         ExpReward = 30;
+        gold = 15;
         break;
 
     case 4:
@@ -38,6 +41,7 @@ void Monster::CreateMonster(int type)
         Attack = 8;
         Defense = 2;
         ExpReward = 15;
+        gold = 7;
         break;
 
     default:
@@ -47,6 +51,7 @@ void Monster::CreateMonster(int type)
         Attack = 1;
         Defense = 0;
         ExpReward = 1;
+        gold = 0;
         break;
     }
 }
@@ -103,4 +108,8 @@ void Monster::TakeDamage(int damage)
 bool Monster::IsDead()
 {
     return HP <= 0;
+}
+
+int Monster::GetMoney() {
+    return gold;
 }

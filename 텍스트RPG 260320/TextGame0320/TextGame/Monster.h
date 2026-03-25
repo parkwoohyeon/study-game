@@ -11,6 +11,7 @@ private:
     int Defense;
     int Level;
     int ExpReward;
+    int gold;
 
 public:
     void CreateMonster(int type);
@@ -25,4 +26,8 @@ public:
 
     void TakeDamage(int damage);
     bool IsDead();
+
+    int GetMoney();
+
+
 };
