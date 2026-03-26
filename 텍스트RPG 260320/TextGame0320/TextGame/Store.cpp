@@ -1,23 +1,38 @@
 ﻿#include "Store.h"
 
+#include "Store.h"
+
 Store::Store()
 {
     items.push_back({ "포션", 30 });
+
+    items.push_back({ "나무검", 50 });
     items.push_back({ "철검", 100 });
-    items.push_back({ "가죽 갑옷", 120 });
+    items.push_back({ "강철검", 180 });
+
+    items.push_back({ "천갑옷", 40 });
+    items.push_back({ "가죽갑옷", 120 });
+    items.push_back({ "사슬갑옷", 220 });
 }
 
 void Store::ItemList()
 {
-    std::cout << "\n========== 상점 ==========\n";
+    std::cout << "\n==================================================\n";
+    std::cout << "                      SHOP\n";
+    std::cout << "==================================================\n";
+    std::cout << "상인 : 필요한 물건이 있으면 골라보게.\n";
+    std::cout << "--------------------------------------------------\n";
 
-    for (int i = 0; i < items.size(); i++)
+    for (int i = 0; i < (int)items.size(); i++)
     {
-        std::cout << i + 1 << ". " << items[i].name
-                  << " - " << items[i].price << " Gold\n";
+        std::cout << "[" << i + 1 << "] "
+            << items[i].name
+            << "  -  "
+            << items[i].price << " G\n";
     }
 
-    std::cout << items.size() + 1 << ". 나가기\n";
+    std::cout << "[" << items.size() + 1 << "] 상점을 나간다\n";
+    std::cout << "==================================================\n";
 }
 
 void Store::EnterShop(Player& player)

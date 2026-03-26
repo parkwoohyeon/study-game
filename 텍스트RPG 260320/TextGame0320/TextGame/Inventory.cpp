@@ -8,17 +8,25 @@ void Inventory::AddItem(const std::string& itemName) {
 		
 }
 
-void Inventory::ShowItems() {
-	std::cout << "\n========= 인벤토리 =============\n";
+void Inventory::ShowItems()
+{
+    std::cout << "\n========================================\n";
+    std::cout << "               INVENTORY\n";
+    std::cout << "========================================\n";
 
-	if (items.empty()) {
-		std::cout << "인벤토리가 비어 있습니다\n";
-		return;
-	}
-	
-	for (int i = 0; i < items.size(); i++) {
-		std::cout << i + 1 << ". " << items[i] << '\n';
-	}
+    if (items.empty())
+    {
+        std::cout << "인벤토리가 비어 있습니다.\n";
+        std::cout << "========================================\n";
+        return;
+    }
+
+    for (int i = 0; i < (int)items.size(); i++)
+    {
+        std::cout << "[" << i + 1 << "] " << items[i] << '\n';
+    }
+
+    std::cout << "========================================\n";
 }
 
 bool Inventory::IsEmpty() {

@@ -15,7 +15,15 @@ void MainGame::Update()
         system("cls");
         player.Render();
 
-        std::cout << "\n1. 사냥터 2. 인벤토리 3. 상점 4. 종료\n -> ";
+        std::cout << "\n========================================\n";
+        std::cout << "               MAIN MENU\n";
+        std::cout << "========================================\n";
+        std::cout << "[1] 사냥터\n";
+        std::cout << "[2] 인벤토리\n";
+        std::cout << "[3] 상점\n";
+        std::cout << "[4] 종료\n";
+        std::cout << "========================================\n";
+        std::cout << "선택 >> ";
         std::cin >> input;
 
         if (input == 1)
