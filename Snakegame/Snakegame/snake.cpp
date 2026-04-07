@@ -3,16 +3,16 @@
 #include <vector>
 
 
-void Snake::Init()
+void Snake::Init(int startX, int startY)
 {
     body.clear();
-    body.push_back({ 5, 3 });
-    body.push_back({ 4, 3 });
-    body.push_back({ 3, 3 });
+    body.push_back({ startX, startY });
+    body.push_back({ startX - 1, startY });
+    body.push_back({ startX - 2, startY });
 
-    
-    grow = false;
+    growCount = 0;
 }
+
 
 void Snake::Move(Direction dir)
 {
@@ -30,22 +30,23 @@ void Snake::Move(Direction dir)
 
     body.insert(body.begin(), head);
 
-    if (!grow)
-        body.pop_back();
+    if (growCount > 0)
+    {
+        growCount--;
+    }
     else
-        grow = false;
+    {
+        body.pop_back();
+    }
 }
 
 
 
-void Snake::Grow() 
+void Snake::Grow(int amount) 
 {
-	grow = true;
+    growCount += amount;
 
 }
-
-
-
 
 
 
@@ -60,7 +61,16 @@ bool Snake::IsOnBody(int x, int y) const
     return false;
 }
 
-
+// 머리 제외 몸통만 검사
+bool Snake::IsOnBodyExceptHead(int x, int y) const
+{
+    for (size_t i = 1; i < body.size(); i++)
+    {
+        if (body[i].x == x && body[i].y == y)
+            return true;
+    }
+    return false;
+}
 
 
 
@@ -73,4 +83,24 @@ Position Snake :: GetHead() const //어쩌피 위치만 알려주고 상태는 �
 const std::vector<Position>& Snake::GetBody() const
 {
 	return body;
+}
+
+
+int Snake::GetLength() const
+{
+    return (int)body.size();
+}
+
+
+//상대가 steal을 먹었을때 길이를 줄이는 함수
+void Snake::Shrink(int amount)
+{
+    for (int i = 0; i < amount; i++) {
+        if(body.size() > 3) // 최소 길이 유지
+        {
+            body.pop_back();
+        }
+    }
+
+    
 }
